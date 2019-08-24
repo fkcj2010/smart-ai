@@ -52,10 +52,11 @@ const actions = {
     getCommunity({state, commit}, payload) {
         let {name} = payload
         axios.get(`/smartSociety/b?name=${name}`).then(res => {
-            let {diffculty, creditLevel} = res.data
+            let {diffculty, energyConsumption, } = res.data
             let community = {...state.community}
             community.diffculty = diffculty
-            community.creditLevel = creditLevel
+            community.energyConsumption = energyConsumption
+            community.rishLevel = rishLevel
             commit('setState', {
                 community
             })
@@ -65,10 +66,10 @@ const actions = {
     getFinance({state, commit}, payload) {
         let {name} = payload
         axios.get(`/smartSociety/c?name=${name}`).then(res => {
-            let {diffculty, energyConsumption, rishLevel} = res.data
+            let {diffculty, creditLevel, rishLevel} = res.data
             let finance = {...state.finance}
             finance.diffculty = diffculty
-            finance.energyConsumption = energyConsumption
+            finance.creditLevel = creditLevel
             commit('setState', {
                 finance
             })

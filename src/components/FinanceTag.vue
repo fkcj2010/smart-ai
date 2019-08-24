@@ -12,14 +12,14 @@
         <div class="fs14">
             <el-row :span='24' class="item-row">
                 <el-col :span='4'>该用户困难指数:</el-col>
-                <el-col :span='2'>{{stateHome.finance.rishLevel}}</el-col>
+                <el-col :span='2'>{{stateHome.finance.diffculty}}</el-col>
                 <el-col :span='10'>
                     <el-button type="mini" plain>社区帮助</el-button>
                 </el-col>
             </el-row>
             <el-row :span='24' class="item-row">
                 <el-col :span='4'>该用户信用评级:</el-col>
-                <el-col :span='2'>{{stateHome.finance.rishLevel}}</el-col>
+                <el-col :span='2'>{{stateHome.finance.creditLevel}}</el-col>
             </el-row>
         </div>
     </div>
