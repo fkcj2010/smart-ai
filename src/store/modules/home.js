@@ -64,7 +64,7 @@ const actions = {
 
     getFinance({state, commit}, payload) {
         let {name} = payload
-        axios.get(`/smartSociety/b?name=${name}`).then(res => {
+        axios.get(`/smartSociety/c?name=${name}`).then(res => {
             let {diffculty, energyConsumption, rishLevel} = res.data
             let finance = {...state.finance}
             finance.diffculty = diffculty
