@@ -60,15 +60,32 @@ export default {
     },
 
     mounted() {
-        this.initTripChart()
+        // this.initTripChart()
+        this.$store.dispatch('home/getTripChart')
+        this.$store.dispatch('home/getResourceChart')
+    },
+
+    watch: {
+        'stateHome.tripChart': {
+            handler(newName, oldName) {
+                this.initTripChart()
+            },
+            deep: true,
+        },
+        'stateHome.resourceChart': {
+            handler(newName, oldName) {
+                this.initTripChart()
+            },
+            deep: true,
+        },
     },
 
     methods: {
         initTripChart() {
             let tripChart = echarts.init(document.querySelector('#tripChart'));
             let resourceChart = echarts.init(document.querySelector('#resourceChart'));
-            tripChart.setOption(this.getOption(this.stateHome.tripChart.dataAxis, this.stateHome.tripChart.dataYaxis))
-            resourceChart.setOption(this.getOption(this.stateHome.resourceChart.dataAxis, this.stateHome.resourceChart.dataYaxis))
+            tripChart.setOption(this.getOption(this.stateHome.tripChart.dataAxis, this.stateHome.tripChart.dataYaxis, '社区住户出行规律'))
+            resourceChart.setOption(this.getOption(this.stateHome.resourceChart.dataAxis, this.stateHome.resourceChart.dataYaxis, '社区住户能源消费'))
         },
 
         appraise() {

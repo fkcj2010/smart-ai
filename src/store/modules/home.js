@@ -38,6 +38,20 @@ const actions = {
         })
     },
 
+    // getPerson({state, commit}, payload) {
+    //     let {name} = payload
+    //     axios.get(`/smartSociety/b?name=${name}`).then(res => {
+    //         let {diffculty, creditLevel, energyConsumption} = res.data
+    //         let person = {...state.person}
+    //         person.diffculty = diffculty
+    //         person.creditLevel = creditLevel
+    //         person.energyConsumption = energyConsumption
+    //         commit('setState', {
+    //             person
+    //         })
+    //     })
+    // },
+
     getTripChart({state, commit}) {
         axios.get(`/smartSociety/d`).then(res => {
             let tripChart = {...state.tripChart}
