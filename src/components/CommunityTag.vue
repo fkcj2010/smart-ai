@@ -14,7 +14,7 @@
             <el-input
                 class="name-input"
                 placeholder="请输入姓名"
-                v-model="stateHome.person.name"
+                v-model="stateHome.community.name"
                 clearable>
             </el-input>
             <el-button type="primary" @click="appraise">评估</el-button>
@@ -22,18 +22,18 @@
         <div class="fs14">
             <el-row :span='24' class="item-row">
                 <el-col :span='4'>该用户困难指数:</el-col>
-                <el-col :span='2'>1</el-col>
+                <el-col :span='2'>{{stateHome.community.diffculty}}</el-col>
                 <el-col :span='10'>
                     <el-button type="mini" plain>社区帮助</el-button>
                 </el-col>
             </el-row>
             <el-row :span='24' class="item-row">
                 <el-col :span='4'>能源消费类别:</el-col>
-                <el-col :span='2'>高消耗</el-col>
+                <el-col :span='2'>{{stateHome.community.energyConsumption}}</el-col>
             </el-row>
             <el-row :span='24' class="item-row">
                 <el-col :span='4'>危险指数:</el-col>
-                <el-col :span='2' class="fs14">高</el-col>
+                <el-col :span='2' class="fs14">{{stateHome.community.rishLevel}}</el-col>
             </el-row>
         </div>
         <!-- </div> -->
@@ -89,7 +89,7 @@ export default {
         },
 
         appraise() {
-            console.log(this.stateHome.person.name)
+            this.$store.dispatch('home/getCommunity', {name: this.stateHome.community.name})
         },
 
         getOption(dataAxis, dataYaxis, yName) {
