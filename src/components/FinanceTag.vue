@@ -35,7 +35,7 @@ export default {
 
     methods: {
         appraise() {
-            this.$store.dispatch('home/getFinance', {name: this.stateHome.community.name})
+            this.$store.dispatch('home/getFinance', {name: this.stateHome.finance.name})
         }
     },
 }
