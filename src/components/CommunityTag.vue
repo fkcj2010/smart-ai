@@ -8,6 +8,8 @@
             <div class="chart-title mt16">社区住户能源消费</div>
             <div class="chart-container" id='resourceChart'></div>
         </div>
+        <!-- <div class="oper-box"> -->
+
         <div class="mt16">
             <el-input
                 class="name-input"
@@ -34,6 +36,8 @@
                 <el-col :span='2' class="fs14">高</el-col>
             </el-row>
         </div>
+        <!-- </div> -->
+
     </div>
 </template>
 <script>
@@ -49,8 +53,8 @@ export default {
     data() {
         return {
             tripChartData: {
-                dataAxis: [1,2,3,4,5],
-                dataYaxis: [220, 182, 191, 234, 290],
+                dataAxis: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
+                dataYaxis: [220, 182, 191, 234, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290, 290],
             }
         }
     },
@@ -63,6 +67,15 @@ export default {
         initTripChart() {
             let tripChart = echarts.init(document.querySelector('#tripChart'));
             let resourceChart = echarts.init(document.querySelector('#resourceChart'));
+            tripChart.setOption(this.getOption(this.stateHome.tripChart.dataAxis, this.stateHome.tripChart.dataYaxis))
+            resourceChart.setOption(this.getOption(this.stateHome.resourceChart.dataAxis, this.stateHome.resourceChart.dataYaxis))
+        },
+
+        appraise() {
+            console.log(this.stateHome.person.name)
+        },
+
+        getOption(dataAxis, dataYaxis, yName) {
             let option = {
                 color: ['#3398DB'],
                 tooltip : {
@@ -73,14 +86,15 @@ export default {
                 },
                 grid: {
                     left: '3%',
-                    right: '4%',
+                    right: '5%',
                     bottom: '4%',
                     containLabel: true
                 },
                 xAxis : [
                     {
                         type : 'category',
-                        data : this.tripChartData.dataAxis,
+                        name: '时间',
+                        data : dataAxis,
                         axisTick: {
                             alignWithLabel: true
                         }
@@ -93,21 +107,15 @@ export default {
                 ],
                 series : [
                     {
-                        name:'直接访问',
-                        type:'bar',
+                        name: yName,
+                        type: 'bar',
                         barWidth: '30%',
-                        data:this.tripChartData.dataYaxis
+                        data: dataYaxis
                     }
                 ]
             }
-            tripChart.setOption(option)
-            resourceChart.setOption(option)
+            return option
         },
-
-        appraise() {
-            console.log(this.stateHome.person.name);
-            
-        }
     },
 }
 </script>
@@ -120,7 +128,8 @@ export default {
 
     .chart-container{
         border: @borderWidth;
-        width: 800px;
+        // margin-left: 50px;
+        width: 900px;
         height: 260px;
     }
 
@@ -131,5 +140,9 @@ export default {
 
     .item-row{
         margin-top: 16px;
+    }
+
+    .oper-box{
+        padding-left: 50px;
     }
 </style>
